@@ -1,0 +1,22 @@
+<h1 id="myNumber">0</h1>
+<button id="myButton">숫자 증가</button>
+
+<script>
+	// 버튼 클릭시 숫자 커지기
+  function plus() {
+      
+	// 숫자를 증가시킵니다.
+	const currentNumber = parseInt(myNumber.textContent);
+	myNumber.textContent = currentNumber + 1;
+
+  }
+
+  // HTML 요소를 선택합니다.
+  const myNumber = document.querySelector('#myNumber');
+  const myButton = document.querySelector('#myButton');
+
+
+  // 버튼 클릭 이벤트 리스너를 추가합니다.
+  myButton.addEventListener('click', plus);
+
+</script>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>세일잡기</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar bg-body-tertiary mb-5">
+    <div class="container-fluid">
+      <a class="navbar-brand">세일잡기</a>
+      <form class="d-flex" role="search">
+        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">유저픽
+          등록</button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">유저 추천 상품 등록</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/userpick" method="post">
+          <div class="modal-body">
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"
+              placeholder="쿠팡 URL을 등록하세요" name="userurl">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row w-75 mx-auto mb-5">
+    <h2 class="col-12">오늘의 세일상품</h2>
+    {% for prd in data['prd_list_data'] %}
+    <div class="col-md-3 p-2">
+      <div class="card">
+        <img src="{{prd.img}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{prd.name}}</h5>
+          <p class="fs-6 fw-bold text-danger">{{prd.discount}} 할인 상품</p>
+          <p class="card-text fs-4 fw-medium "><span class="text-primary fw-bold fs-4">{{prd.price}}</span>원</p>
+          <a href="{{prd.link}}" class="btn btn-primary">세일잡기</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row w-75 mx-auto">
+    <h2 class="col-12">유저픽 추천상품</h2>
+    {% for prd in data['usrprd_list_data'] %}
+    <div class="col-md-3 p-2">
+      <div class="card">
+        <img
+          src="{{prd.img}}"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{prd.name}}</h5>
+          <p class="fs-6 fw-bold text-danger">{{prd.discount}} 할인 상품</p>
+          <p class="card-text fs-4 fw-medium "><span class="text-primary fw-bold fs-4">{{prd.price}}</span>원</p>
+          <a href="{{prd.link}}" class="btn btn-primary">세일잡기</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</html>
